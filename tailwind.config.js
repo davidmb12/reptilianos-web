@@ -7,7 +7,11 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    
     extend: {
+      fontFamily:{
+        Montserrat:['Montserrat Alternate','sans-serif'],
+      },
       colors:{
         lightGreen:'#4caf50'
       },
@@ -16,6 +20,7 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      
       
     },
   },
