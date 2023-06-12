@@ -22,7 +22,7 @@ const Navbar = () => {
 
   
   return (
-    <nav className='absolute px-[3em] py-[1.5em] text-right align-middle w-full bg-gradient-to-t'>
+    <nav className='fixed px-[3em] py-[1.5em] text-right align-middle w-full bg-gradient-to-t overflow-y-auto'>
         
           <div className='h-16 inline-block font-Montserrat'>
             <div className='flex-shrink-0 inline-flex '>

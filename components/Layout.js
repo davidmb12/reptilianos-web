@@ -13,8 +13,8 @@ export const metadata = {
 const Layout = ({children}) => {
   return (
     <div>
-      <main>{children}</main>
       <Navbar></Navbar>
+      <main>{children}</main>
 
     </div>
   )
