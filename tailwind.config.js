@@ -11,6 +11,8 @@ module.exports = {
     extend: {
       fontFamily:{
         Montserrat:['Montserrat Alternate','sans-serif'],
+        Pangolin:['Pangolin','cursive'],
+        Rubik:['Rubik Spray Paint','cursive'],
       },
       colors:{
         lightGreen:'#4caf50'

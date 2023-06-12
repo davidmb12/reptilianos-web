@@ -14,7 +14,7 @@ const Layout = ({children}) => {
   return (
     <div>
       <Navbar></Navbar>
-      <main>{children}</main>
+      <main className='bg-fixed bg-snake-01 bg-cover'>{children}</main>
 
     </div>
   )
