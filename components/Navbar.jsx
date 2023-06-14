@@ -52,7 +52,7 @@ const Navbar = () => {
   },[clientWindowHeight]);
   
   return (
-    <nav className={`fixed px-[3em] py-[30px] top-0 text-right flex-col align-middle w-full overflow-y-auto`} 
+    <nav className={`fixed px-[3em] py-[30px] top-0 text-right flex-col align-middle w-full overflow-y-auto z-10`} 
       style={{
         background:`rgba(255,255,255,${backgroundTransparency}`,
         padding: `${padding}px 3em`,

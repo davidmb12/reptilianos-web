@@ -13,6 +13,8 @@ module.exports = {
         Montserrat:['Montserrat Alternate','sans-serif'],
         Pangolin:['Pangolin','cursive'],
         Rubik:['Rubik Spray Paint','cursive'],
+        RubikMicrobe:['Rubik Microbe','cursive'],
+        Grandiflora:['Grandiflora One','serif'],
       },
       colors:{
         lightGreen:'#4caf50'

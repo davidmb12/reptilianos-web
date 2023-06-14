@@ -1,10 +1,14 @@
+import Layout from '@/components/Layout'
 import React from 'react'
 
 const About = () => {
   return (
-    <div>
-      
-    </div>
+    <Layout>
+      <div className='text-black'>
+        
+      </div>
+    </Layout>
+    
   )
 }
 

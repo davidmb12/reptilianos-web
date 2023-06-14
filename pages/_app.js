@@ -1,16 +1,19 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { motion } from 'framer-motion';
-
+import { AnimatePresence, motion } from 'framer-motion';
+import Navbar from '@/components/Navbar';
 
 const App = ({Component,pageProps})=>{
     return(
-        <motion.div initial="initial" animate='animate'>
-            <Layout>
+        <>            
+            <Navbar></Navbar>
+            <AnimatePresence mode='wait'>
                 <Component {...pageProps}></Component>
-            </Layout>
-        </motion.div>
+            </AnimatePresence>
+            
         
+        </>
+            
     )
 }
 
