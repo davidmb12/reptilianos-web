@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.2.96",
+    "@next/font": "^13.4.6",
     "@reduxjs/toolkit": "^1.9.5",
     "autoprefixer": "10.4.14",
     "eslint": "8.42.0",

@@ -1,14 +1,18 @@
 import Layout from '@/components/Layout';
 import React from 'react';
-
+import { Rubik_Microbe } from 'next/font/google';
+const rubik = Rubik_Microbe({
+    weight:['400'],
+    subsets:['latin']
+})
 const HomePage = ()=>{
     return(
         <Layout>
-            <div className='bg-fixed bg-snake-01'>
+            <div className='bg-fixed bg-snake-01 fill-neutral-500'>
                 <div className='h-screen'>
                     <div className='h-full text-center justify-center align-middle flex flex-col'>
                         <h1 className='text-[3rem] text-black font-serif'>BIENVENIDOS</h1>
-                        <p className='text-[3rem] text-green-700'>REPTILIANOS</p>
+                        <p className={`${rubik.className} text-8xl text-lightGreen`}>REPTILIANOS</p>
                     </div>
                 </div>
                 <div className='w-full h-[55vh] flex-row bg-white'>
