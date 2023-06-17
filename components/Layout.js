@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from './Navbar'
 import '../app/globals.css'
 import { Inter } from 'next/font/google'
 import { AnimatePresence, motion } from 'framer-motion';
