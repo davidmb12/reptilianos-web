@@ -24,6 +24,7 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'snake-01':"url('/snake-02.jpg')",
+        'snake-03':"url('/snake-03.jpeg')",
       },
       
       

@@ -50,14 +50,14 @@
 //       setBoxShadow(boxShadowVar);
 //     }
 //   },[clientWindowHeight]);
-  
+
 //   const[isOpen,setIsOpen] =useState(false);
 //   const toggle = ()=> setIsOpen(!isOpen);
 
 
 //   return (
 
-    
+
 //     <nav className={`fixed px-[3em] py-[30px] top-0 text-right flex-col align-middle w-full overflow-y-auto z-10`} 
 //       style={{
 //         background:`rgba(255,255,255,${backgroundTransparency}`,
@@ -65,7 +65,7 @@
 //         boxShadow: `rgb(0 0 0 / ${boxShadow}) 0px 0px 20px 6px`
 //       }}>  
 //           <div className='inline font-serif'>
-            
+
 //             <div className='flex-shrink-0 inline-flex '>
 //               <a href="/" className='text-black font-medium text-xl hover:bg-gray-100 transition-all p-3 rounded-lg'> Inicio </a>
 //             </div>
@@ -82,7 +82,7 @@
 //             </button>
 
 //           </div>
-        
+
 //     </nav>
 //   )
 // }
@@ -90,12 +90,13 @@
 // export default Navbar
 
 import React, { useEffect, useState } from 'react'
-import
-{
+import {
   Box,
   Flex,
   Avatar,
   HStack,
+  VStack,
+  StackDivider,
   IconButton,
   Button,
   Menu,
@@ -106,26 +107,34 @@ import
   useDisclosure,
   useColorModeValue,
   Stack,
+  Divider,
+  Spacer,
 } from '@chakra-ui/react'
-import {HamburgerIcon,CloseIcon,AddIcon} from '@chakra-ui/icons'
+import { HamburgerIcon, CloseIcon, AddIcon, ChevronDownIcon } from '@chakra-ui/icons'
 import Link from 'next/link'
-import {ColorModeSwitcher} from './ColorModeSwitcher'
+import { ColorModeSwitcher } from './ColorModeSwitcher'
+
 import navStyles from './navbar.module.css'
+import { FaCartPlus } from 'react-icons/fa'
 
 const Links = [
   {
-    name:'Home',
-    path:'/',
+    name: 'Inicio',
+    path: '/',
+  },
+  {
+    name: 'Quienes somos?',
+    path: '/about',
   }
 ]
-const NavLink= ({children,path})=>{
+const NavLink = (children, path) => {
   <Box
     px={2}
     py={1}
     rounded={"md"}
     _hover={{
       textDecoration: "none",
-      bg:useColorModeValue("gray.200","gray.700"),
+      bg: useColorModeValue("gray.200", "gray.700"),
     }}
   >
     <Link href={path}>{children}</Link>
@@ -133,121 +142,125 @@ const NavLink= ({children,path})=>{
 };
 
 
-export default function Navbar (){
-  const {isOpen,onOpen,onClose} = useDisclosure();
-  const [clientWindowHeight,setClientWindowHeight] = useState("");
+export default function Navbar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [clientWindowHeight, setClientWindowHeight] = useState("");
   const [backgroundTransparency, setBackgroundTransparency] = useState(0);
   const [padding, setPadding] = useState(30);
-  const [boxShadow,setBoxShadow] = useState(0);
+  const [boxShadow, setBoxShadow] = useState(0);
 
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
-    console.log(clientWindowHeight);
   };
 
-    //Handle scrolling
+  //Handle scrolling
   useEffect(() => {
-    window.addEventListener('scroll',handleScroll);
-    return ()=>{
+    window.addEventListener('scroll', handleScroll);
+    return () => {
       window.removeEventListener('scroll', handleScroll);
     }
   })
-  
+
 
   //Calculate bg transparency, padding and boxShadow
-  useEffect(()=>{
+  useEffect(() => {
     let backgroundTransparencyVar = clientWindowHeight / 600;
-    if(backgroundTransparencyVar < 1){
-      let paddingVar = 30 - backgroundTransparencyVar *20;
-      let boxShadowVar = backgroundTransparencyVar *0.1;
-
+    if (backgroundTransparencyVar < 1) {
+      let paddingVar = 30 - backgroundTransparencyVar * 20;
+      let boxShadowVar = backgroundTransparencyVar * 0.1;
+      
       setBackgroundTransparency(backgroundTransparencyVar);
       setPadding(paddingVar);
       setBoxShadow(boxShadowVar);
     }
-  },[clientWindowHeight]);
- 
+  }, [clientWindowHeight]);
+
 
   return (
-    <div 
-      className={`overflow-hidden fixed px-[3em] py-[30px] top-0 text-right flex-col align-middle w-full overflow-y-auto z-10`} 
+    <div
+      className={`overflow-hidden fixed  top-0 text-right flex-col align-middle w-full z-10`}
       style={{
-              background:`rgba(255,255,255,${backgroundTransparency}`,
-              padding: `${padding}px 3em`,
-              boxShadow: `rgb(0 0 0 / ${boxShadow}) 0px 0px 20px 6px`,
-              overflow:'hidden'
-            }}
-    > 
-      <Box>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        boxShadow: `rgb(0 0 0 / ${boxShadow}) 0px 0px 20px 6px`,
+        overflow: 'hidden'
+      }}
+    >
+      <div className=' fixed w-full px-[3em] py-[30px] top-0 z-10' style={{ background: `rgba(255,255,255,${backgroundTransparency}`, padding: `${padding}px 3em`, }}>
+        {isOpen ? (
+          <Box pb={4} display={{ md: "none" }}>
+            <VStack
+              divider={<StackDivider borderColor='gray.200' />}
+              spacing={4}
+              align='stretch'
+            >
+              {Links.map(({ name, path }) => (
+                <Box h='40px' textAlign={'center'}>
+                  <Link href={path} className='hover:text-lightGreen'>
+                    {name}
+                  </Link>
+                </Box>
+              ))}
+            </VStack>
+            
+          </Box>
+        ) : null
+        }
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"} >
           <IconButton
             size={"md"}
-            icon={isOpen?<CloseIcon/>:<HamburgerIcon/>}
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
-            display={{md:"none"}}
-            onClick={isOpen? onClose:onOpen}
+            display={{ md: "none" }}
+            onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>Logo</Box>
             <HStack
               as={"nav"}
               spacing={4}
-              display={{base:"none",md:"flex"}}
+              display={{ base: "none", md: "flex" }}
+              style={{ color: `rgb(${255-(backgroundTransparency*255)},${(255-(backgroundTransparency*255))},${(255-(backgroundTransparency*255))})`}}
             >
-              {Links.map(({name,path})=>(
-                <NavLink key={path} path={path}>
+              {Links.map(({ name, path }) => (
+                <Link key={name} href={path} className='hover:text-lightGreen transition-all ease-in-out font-semibold'>
                   {name}
-                </NavLink>
+                </Link>
               ))}
             </HStack>
-            <ColorModeSwitcher/>
+            <ColorModeSwitcher />
           </HStack>
-          <Flex alignItems={"center"}>
-            <Button
+
+          <HStack spacing={8} alignItems={"center"}>
+            <IconButton
               variant={"solid"}
-              colorScheme={"teal"}
+              colorScheme={"green"}
               size={"sm"}
-              mr={4}
-              leftIcon={<AddIcon/>}
+              icon={<FaCartPlus />}
             >
               Action
-            </Button>
+            </IconButton>
             <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-              >
-                <Avatar
-                  size={"sm"}
-                  src={
-                    "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                  }
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider/>
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
+              {({ isOpen }) => (
+                <>
+                  <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
+                    Catálogo
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem>Piton Bola</MenuItem>
+                    <MenuItem>Gecko Leopardo</MenuItem>
+                    <MenuItem>Camaleón</MenuItem>
+                    <MenuItem>Gecko de día</MenuItem>
+                    <MenuItem>Dragón Barbado</MenuItem>
+                    <MenuItem>Tortugas</MenuItem>
+                  </MenuList>
+                </>
+              )}
             </Menu>
-          </Flex>
+            <Avatar size={'sm'} ></Avatar>
+            <ColorModeSwitcher />
+          </HStack>
+
         </Flex>
-        {isOpen? (
-          <Box pb={4} display={{md:"none"}}>
-            <Stack as={"nav"} spacing={4}>
-              {Links.map(({name,path})=>(
-                <NavLink key={path} path={path}>
-                  {name}
-                </NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ): null
-      }
-      </Box>
+
+      </div>
     </div>
   )
 }
