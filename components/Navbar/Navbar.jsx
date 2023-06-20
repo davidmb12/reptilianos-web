@@ -194,7 +194,7 @@ export default function Navbar() {
             >
               {Links.map(({ name, path }) => (
                 <Box h='40px' textAlign={'center'}>
-                  <Link href={path} className='hover:text-lightGreen'>
+                  <Link key={name} href={path} className='hover:text-lightGreen'>
                     {name}
                   </Link>
                 </Box>
