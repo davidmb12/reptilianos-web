@@ -193,8 +193,8 @@ export default function Navbar() {
               align='stretch'
             >
               {Links.map(({ name, path }) => (
-                <Box h='40px' textAlign={'center'}>
-                  <Link key={path} href={path} className='hover:text-lightGreen'>
+                <Box h='40px' textAlign={'center'} key={path}>
+                  <Link  href={path} className='hover:text-lightGreen'>
                     {name}
                   </Link>
                 </Box>
