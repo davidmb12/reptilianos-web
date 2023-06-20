@@ -9,7 +9,7 @@ export const ColorModeSwitcher = (props) => {
     const SwitchIcon =useColorModeValue(FaMoon,FaSun);
 
   return (
-    <iconButton
+    <IconButton
         size="md"
         fontSize="lg"
         variant="ghost"

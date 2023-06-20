@@ -178,13 +178,13 @@ export default function Navbar() {
 
   return (
     <div
-      className={`overflow-hidden fixed  top-0 text-right flex-col align-middle w-full z-10`}
+      className={`overflow-hidden fixed  top-0 text-right flex-col align-middle w-full h-full z-10`}
       style={{
         boxShadow: `rgb(0 0 0 / ${boxShadow}) 0px 0px 20px 6px`,
         overflow: 'hidden'
       }}
     >
-      <div className=' fixed w-full px-[3em] py-[30px] top-0 z-10' style={{ background: `rgba(255,255,255,${backgroundTransparency}`, padding: `${padding}px 3em`, }}>
+      <div className=' absolute w-full overflow-hidden px-[3em] py-[30px] top-0 z-10' style={{ background: `rgba(255,255,255,${backgroundTransparency*1.1}`, padding: `${padding}px 3em`, }}>
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <VStack
@@ -193,8 +193,8 @@ export default function Navbar() {
               align='stretch'
             >
               {Links.map(({ name, path }) => (
-                <Box h='40px' textAlign={'center'} key={path}>
-                  <Link  href={path} className='hover:text-lightGreen'>
+                <Box h='40px' textAlign={'center'}>
+                  <Link href={path} className='hover:text-lightGreen'>
                     {name}
                   </Link>
                 </Box>
@@ -220,7 +220,7 @@ export default function Navbar() {
               style={{ color: `rgb(${255-(backgroundTransparency*255)},${(255-(backgroundTransparency*255))},${(255-(backgroundTransparency*255))})`}}
             >
               {Links.map(({ name, path }) => (
-                <Link key={path} href={path} className='hover:text-lightGreen transition-all ease-in-out font-semibold'>
+                <Link key={name} href={path} className='hover:text-lightGreen transition-all ease-in-out font-semibold'>
                   {name}
                 </Link>
               ))}
