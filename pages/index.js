@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import React from 'react';
 import { Rubik_Microbe } from 'next/font/google';
-import { Box, Button, Flex, HStack, IconButton } from '@chakra-ui/react';
+import { Box, Button, Flex, HStack, IconButton, VStack } from '@chakra-ui/react';
 import { FaCartPlus } from 'react-icons/fa';
 const rubik = Rubik_Microbe({
     weight: ['400'],
@@ -17,9 +17,10 @@ const HomePage = () => {
                         <p className={`${rubik.className} text-[8vw] text-8xl text-white font-[500]`}>REPTTILIANOS</p>
                     </div>
                 </div>
-                <div className='w-full bg-white py-[6rem] px-[15rem] z-0'>
-                    <Flex flexDirection={'column'} justifySelf={'center'}>
-                        <HStack justifyContent={'space-between'} textAlign={'center'} >
+                <div className='w-full bg-white py-[6rem] px-[10rem] z-0'>
+                    <Flex justify={'center'} justifySelf={'center'}>
+                        
+                        <HStack display={{md:'flex'}} spacing={'20rem 20rem'}>
                             <Box>
                                 <h1 className='text-[2rem] text-black font-serif'>Animales</h1>
                             </Box>
@@ -31,9 +32,9 @@ const HomePage = () => {
                                 icon={<FaCartPlus />}
                             >
                                 Comprar Ahora
-                            </Button>                   
+                            </Button>   
+                        </HStack>     
                                  
-                        </HStack>
                     </Flex>
                 </div>
                 <div className='w-full h-full flex-row  text-center justify-end align-middle flex z-0'>

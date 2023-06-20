@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 const colors = require('tailwindcss/colors');
 module.exports = {
   content: [
@@ -26,6 +28,7 @@ module.exports = {
         'snake-01':"url('/snake-02.jpg')",
         'snake-03':"url('/snake-03.jpeg')",
       },
+      
       
       
     },

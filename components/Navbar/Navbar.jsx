@@ -178,13 +178,13 @@ export default function Navbar() {
 
   return (
     <div
-      className={`overflow-hidden fixed  top-0 text-right flex-col align-middle w-full h-full z-10`}
+      className={`overflow-hidden fixed  top-0 text-right flex-col align-middle w-full  z-10`}
       style={{
         boxShadow: `rgb(0 0 0 / ${boxShadow}) 0px 0px 20px 6px`,
         overflow: 'hidden'
       }}
     >
-      <div className=' absolute w-full overflow-hidden px-[3em] py-[30px] top-0 z-10' style={{ background: `rgba(255,255,255,${backgroundTransparency*1.1}`, padding: `${padding}px 3em`, }}>
+      <div className=' fixed w-full overflow-hidden px-[3em] py-[30px] top-0 z-10' style={{ background: `rgba(255,255,255,${backgroundTransparency*1.1}`, padding: `${padding}px 3em`, }}>
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <VStack
@@ -225,10 +225,9 @@ export default function Navbar() {
                 </Link>
               ))}
             </HStack>
-            <ColorModeSwitcher />
           </HStack>
 
-          <HStack spacing={8} alignItems={"center"}>
+          <HStack spacing={8} alignItems={"center"} className=' fixed overflow-visible right-0 pr-10'>
             <IconButton
               variant={"solid"}
               colorScheme={"green"}
