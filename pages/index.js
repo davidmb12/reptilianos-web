@@ -21,14 +21,15 @@ const HomePage = () => {
                     <Flex flexDirection={'column'} justifySelf={'center'}>
                         <HStack justifyContent={'space-between'} textAlign={'center'} >
                             <Box>Animales</Box>
-                            <IconButton
+                            <Button
                                 variant={"solid"}
                                 colorScheme={"green"}
-                                size={"sm"}
+                                rounded={'full'}
+                                size={"md"}
                                 icon={<FaCartPlus />}
                             >
-                                Action
-                            </IconButton>                   
+                                Comprar Ahora
+                            </Button>                   
                                  
                         </HStack>
                     </Flex>
