@@ -194,7 +194,7 @@ export default function Navbar() {
             >
               {Links.map(({ name, path }) => (
                 <Box h='40px' textAlign={'center'}>
-                  <Link key={name} href={path} className='hover:text-lightGreen'>
+                  <Link key={path} href={path} className='hover:text-lightGreen'>
                     {name}
                   </Link>
                 </Box>
@@ -220,7 +220,7 @@ export default function Navbar() {
               style={{ color: `rgb(${255-(backgroundTransparency*255)},${(255-(backgroundTransparency*255))},${(255-(backgroundTransparency*255))})`}}
             >
               {Links.map(({ name, path }) => (
-                <Link key={name} href={path} className='hover:text-lightGreen transition-all ease-in-out font-semibold'>
+                <Link key={path} href={path} className='hover:text-lightGreen transition-all ease-in-out font-semibold'>
                   {name}
                 </Link>
               ))}
