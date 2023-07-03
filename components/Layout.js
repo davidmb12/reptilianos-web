@@ -2,6 +2,7 @@ import React from 'react'
 import '../app/globals.css'
 import { Inter } from 'next/font/google'
 import { AnimatePresence, motion } from 'framer-motion';
+import Navbar from './Navbar/Navbar';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,18 +13,23 @@ export const metadata = {
 
 const Layout = ({children}) => {
   return (
-    <motion.div
-      initial={{ y: 100,z:0, opacity: 0 }}
-      animate={{ y: 0,z:0, opacity: 1 }}
-      exit={{ y: 300,z:100, opacity: 0 }}
-      transition={{
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-      }}
-    >
-      {children}
-    </motion.div>
+    <>
+      <Navbar></Navbar>
+      <motion.div
+        initial={{ y: 100,z:0, opacity: 0 }}
+        animate={{ y: 0,z:0, opacity: 1 }}
+        exit={{ y: 300,z:100, opacity: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+        }}
+      >
+        {children}
+      </motion.div>
+    
+    </>
+    
   )
 }
 

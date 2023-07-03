@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout';
+import Layout from '../components/Layout';
 import React from 'react';
 import { Rubik_Microbe } from 'next/font/google';
 import { Box, Button, Flex, HStack, IconButton, VStack } from '@chakra-ui/react';
@@ -10,6 +10,7 @@ const rubik = Rubik_Microbe({
 const HomePage = () => {
     return (
         <Layout>
+
             <div className=' bg-fixed bg-snake-03 bg-blend-soft-light bg-cover fill-neutral-500'>
                 <div className='h-screen bg-gradient-radial from-transparent to-[#0008]'>
                     <div className='h-full text-center justify-center align-middle flex flex-col'>

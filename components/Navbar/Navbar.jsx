@@ -253,8 +253,22 @@ export default function Navbar() {
                 </>
               )}
             </Menu>
-            <Avatar size={'sm'} ></Avatar>
-            <ColorModeSwitcher />
+            <Menu>
+              {({ isOpen }) => (
+                <>
+                  <MenuButton background={'transparent'} isActive={isOpen} as={Button}>
+                    <HStack>
+                      <Avatar size={'sm'}></Avatar>
+                      <p>Usuario</p>
+                    </HStack>
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem>Cerrar Sesión</MenuItem>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+            {/* <ColorModeSwitcher /> */}
           </HStack>
 
         </Flex>
