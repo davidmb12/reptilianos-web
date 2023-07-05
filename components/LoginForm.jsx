@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Link, Stack, VStack } from '@chakra-ui/react'
 import axios from 'axios'
 import { FormEvent } from 'react'
 
@@ -8,7 +8,9 @@ const LoginForm = ({ children, onSubmit }) => {
     return (
         <VStack mt={'5'}>
             <Button>
-                Logo
+                <Link href={'/'} className='hover:text-lightGreen transition-all ease-in-out font-semibold'>
+                    Logo
+                </Link>
             </Button>
 
             <Flex width="full" justifyContent={"center"} mt={'3'}>

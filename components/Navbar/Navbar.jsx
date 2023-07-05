@@ -117,6 +117,27 @@ import { ColorModeSwitcher } from './ColorModeSwitcher'
 import navStyles from './navbar.module.css'
 import { FaCartPlus } from 'react-icons/fa'
 
+const Catalog = [
+  {
+    name: 'Piton Bola',
+  },
+  {
+    name: 'Gecko Leopardo',
+  },
+  {
+    name: 'Camaleón'
+  },
+  {
+    name: 'Gecko de día'
+  },
+  {
+    name: 'Dragón Barbado'
+  },
+  {
+    name: 'Tortugas'
+  }
+]
+
 const Links = [
   {
     name: 'Inicio',
@@ -144,6 +165,8 @@ const NavLink = (children, path) => {
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isCatalogOpen,setIsCatalogOpen] = useState(false);
+
   const [clientWindowHeight, setClientWindowHeight] = useState("");
   const [backgroundTransparency, setBackgroundTransparency] = useState(0);
   const [padding, setPadding] = useState(30);
@@ -168,14 +191,16 @@ export default function Navbar() {
     if (backgroundTransparencyVar < 1) {
       let paddingVar = 30 - backgroundTransparencyVar * 20;
       let boxShadowVar = backgroundTransparencyVar * 0.1;
-      
+
       setBackgroundTransparency(backgroundTransparencyVar);
       setPadding(paddingVar);
       setBoxShadow(boxShadowVar);
     }
   }, [clientWindowHeight]);
 
-
+  const handleOnCatalogOpenMobile = (e)=>{
+    setIsCatalogOpen(!isCatalogOpen)
+  }
   return (
     <div
       className={`overflow-hidden fixed  top-0 text-right flex-col align-middle w-full  z-10`}
@@ -184,7 +209,7 @@ export default function Navbar() {
         overflow: 'hidden'
       }}
     >
-      <div className=' fixed w-full overflow-hidden px-[3em] py-[30px] top-0 z-10' style={{ background: `rgba(255,255,255,${backgroundTransparency*1.1}`, padding: `${padding}px 3em`, }}>
+      <div className=' fixed w-full overflow-hidden px-[3em] py-[30px] top-0 z-10' style={{ background: `rgba(255,255,255,${backgroundTransparency * 1.1}`, padding: `${padding}px 3em`, }}>
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <VStack
@@ -199,8 +224,22 @@ export default function Navbar() {
                   </Link>
                 </Box>
               ))}
+
+              <Button rightIcon={<ChevronDownIcon />} onClick={handleOnCatalogOpenMobile}>
+                Catálogo
+              </Button>
+              {isCatalogOpen ? (
+                Catalog.map(({ name }) => (
+                  <Box>
+                    {name}
+                  </Box>
+                ))
+              ) : null
+
+              }
+
             </VStack>
-            
+
           </Box>
         ) : null
         }
@@ -217,7 +256,7 @@ export default function Navbar() {
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}
-              style={{ color: `rgb(${255-(backgroundTransparency*255)},${(255-(backgroundTransparency*255))},${(255-(backgroundTransparency*255))})`}}
+              style={{ color: `rgb(${255 - (backgroundTransparency * 255)},${(255 - (backgroundTransparency * 255))},${(255 - (backgroundTransparency * 255))})` }}
             >
               {Links.map(({ name, path }) => (
                 <Link key={name} href={path} className='hover:text-lightGreen transition-all ease-in-out font-semibold'>
@@ -227,7 +266,7 @@ export default function Navbar() {
             </HStack>
           </HStack>
 
-          <HStack spacing={8} alignItems={"center"} className=' fixed overflow-visible right-0 pr-10'>
+          <HStack spacing={4} alignItems={"center"} className=' fixed overflow-visible right-0 pr-10' display={{ sm: "none", md: "flex" }}>
             <IconButton
               variant={"solid"}
               colorScheme={"green"}
@@ -242,7 +281,7 @@ export default function Navbar() {
                   <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
                     Catálogo
                   </MenuButton>
-                  <MenuList>
+                  <MenuList display={'block'}>
                     <MenuItem>Piton Bola</MenuItem>
                     <MenuItem>Gecko Leopardo</MenuItem>
                     <MenuItem>Camaleón</MenuItem>
@@ -256,13 +295,10 @@ export default function Navbar() {
             <Menu>
               {({ isOpen }) => (
                 <>
-                  <MenuButton background={'transparent'} isActive={isOpen} as={Button}>
-                    <HStack>
-                      <Avatar size={'sm'}></Avatar>
-                      <p>Usuario</p>
-                    </HStack>
+                  <MenuButton background={'transparent'} isActive={isOpen} as={Avatar} size={'sm'}>
+
                   </MenuButton>
-                  <MenuList>
+                  <MenuList >
                     <MenuItem>Cerrar Sesión</MenuItem>
                   </MenuList>
                 </>

@@ -3,11 +3,13 @@ import React from 'react';
 import { Rubik_Microbe } from 'next/font/google';
 import { Box, Button, Flex, HStack, IconButton, VStack } from '@chakra-ui/react';
 import { FaCartPlus } from 'react-icons/fa';
+import { useSession } from 'next-auth/react';
 const rubik = Rubik_Microbe({
     weight: ['400'],
     subsets: ['latin']
 })
 const HomePage = () => {
+    const { data: session, status } = useSession()
     return (
         <Layout>
 
