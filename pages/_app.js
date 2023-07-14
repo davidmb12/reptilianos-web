@@ -6,7 +6,6 @@ import Navbar from '../components/Navbar/Navbar';
 import Providers from '../components/Providers';
 
 
-
 const App = ({ Component, pageProps }) => {
     return (
         <Providers>

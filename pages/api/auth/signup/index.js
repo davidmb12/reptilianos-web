@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import User from '../../../../models/user';
 import { connectDB } from '../../../../libs/mongodb';
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs';
+
 async function POST(req, response) {
     const { username, email, password } = await req.body;
     if (!password || password.length < 6)
@@ -9,7 +10,6 @@ async function POST(req, response) {
 
     try {
         await connectDB();
-        console.log('Conexion establecida')
 
         const userFound = await User.findOne({ email })
         if (userFound) return response.status(409).json({ message: "Email already exists" }, { status: 409 });

@@ -1,8 +1,6 @@
 import React from 'react'
 
 import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Link, Stack, VStack } from '@chakra-ui/react'
-import axios from 'axios'
-import { FormEvent } from 'react'
 
 const LoginForm = ({ children, onSubmit }) => {
     return (
@@ -18,7 +16,7 @@ const LoginForm = ({ children, onSubmit }) => {
                     <Box textAlign={"left"}>
                         <Heading size={'md'}>Iniciar Sesión</Heading>
                     </Box>
-                    <Box my={4}>
+                    <Box my={4} >
                         {children}
                     </Box>
                     <Box my={4} textAlign={"left"}>

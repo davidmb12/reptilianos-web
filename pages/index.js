@@ -1,15 +1,15 @@
 import Layout from '../components/Layout';
 import React from 'react';
-import { Rubik_Microbe } from 'next/font/google';
 import { Box, Button, Flex, HStack, IconButton, VStack } from '@chakra-ui/react';
 import { FaCartPlus } from 'react-icons/fa';
-import { useSession } from 'next-auth/react';
-const rubik = Rubik_Microbe({
-    weight: ['400'],
-    subsets: ['latin']
-})
+import { signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+
+
 const HomePage = () => {
     const { data: session, status } = useSession()
+
+    
     return (
         <Layout>
 
@@ -17,7 +17,7 @@ const HomePage = () => {
                 <div className='h-screen bg-gradient-radial from-transparent to-[#0008]'>
                     <div className='h-full text-center justify-center align-middle flex flex-col'>
                         <h1 className='text-[3rem] text-white font-serif'>BIENVENIDOS</h1>
-                        <p className={`${rubik.className} text-[8vw] text-8xl text-white font-[500]`}>REPTTILIANOS</p>
+                        <p className={`font-serif   text-[8vw] text-8xl text-white `}>REPTTILIANOS</p>
                     </div>
                 </div>
                 <div className='w-full bg-white py-[6rem] px-[10rem] z-0'>

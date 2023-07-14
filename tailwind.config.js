@@ -14,8 +14,8 @@ module.exports = {
       fontFamily:{
         Montserrat:['Montserrat Alternate','sans-serif'],
         Pangolin:['Pangolin','cursive'],
-        Rubik:['Rubik Spray Paint','cursive'],
-        RubikMicrobe:['Rubik Microbe','cursive'],
+        Rubik:['Rubik Spray Paint','cursive','latin'],
+        RubikMicrobe:['Rubik Microbe','cursive','sans'],
         Grandiflora:['Grandiflora One','serif'],
       },
       colors:{

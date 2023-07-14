@@ -116,6 +116,9 @@ import { ColorModeSwitcher } from './ColorModeSwitcher'
 
 import navStyles from './navbar.module.css'
 import { FaCartPlus } from 'react-icons/fa'
+import { signOut } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import { black } from 'tailwindcss/colors'
 
 const Catalog = [
   {
@@ -164,6 +167,7 @@ const NavLink = (children, path) => {
 
 
 export default function Navbar() {
+  //TODO: Refactor
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isCatalogOpen,setIsCatalogOpen] = useState(false);
 
@@ -171,10 +175,17 @@ export default function Navbar() {
   const [backgroundTransparency, setBackgroundTransparency] = useState(0);
   const [padding, setPadding] = useState(30);
   const [boxShadow, setBoxShadow] = useState(0);
+  const router = useRouter()
 
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
   };
+
+  const handleSignOut= async ()=>{
+    const res = await signOut()
+    return router.push({ pathname: '/login', query: { u: "true" } })
+
+}
 
   //Handle scrolling
   useEffect(() => {
@@ -209,28 +220,27 @@ export default function Navbar() {
         overflow: 'hidden'
       }}
     >
-      <div className=' fixed w-full overflow-hidden px-[3em] py-[30px] top-0 z-10' style={{ background: `rgba(255,255,255,${backgroundTransparency * 1.1}`, padding: `${padding}px 3em`, }}>
+      <div className=' fixed w-full overflow-hidden top-0 z-10' style={{ background: `rgba(255,255,255,${backgroundTransparency * 1.1}`, padding: `${padding}px 3em`, }}>
         {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
+          <Box p={'2'} background={'whiteAlpha.900'} display={{ md: "none" }} borderRadius={'2xl'}>
             <VStack
               divider={<StackDivider borderColor='gray.200' />}
-              spacing={4}
-              align='stretch'
+              align='center'
             >
               {Links.map(({ name, path }) => (
-                <Box h='40px' textAlign={'center'}>
+                <Box p={'3'}>
                   <Link href={path} className='hover:text-lightGreen'>
                     {name}
                   </Link>
                 </Box>
               ))}
 
-              <Button rightIcon={<ChevronDownIcon />} onClick={handleOnCatalogOpenMobile}>
+              <Button background={'transparent'} _hover={{background:'transparent'}} p={2} rightIcon={<ChevronDownIcon />} onClick={handleOnCatalogOpenMobile}>
                 Catálogo
               </Button>
               {isCatalogOpen ? (
                 Catalog.map(({ name }) => (
-                  <Box>
+                  <Box p={2}>
                     {name}
                   </Box>
                 ))
@@ -295,11 +305,11 @@ export default function Navbar() {
             <Menu>
               {({ isOpen }) => (
                 <>
-                  <MenuButton background={'transparent'} isActive={isOpen} as={Avatar} size={'sm'}>
+                  <MenuButton isActive={isOpen} as={Avatar} size={'sm'} colorScheme='orange'>
 
                   </MenuButton>
                   <MenuList >
-                    <MenuItem>Cerrar Sesión</MenuItem>
+                    <MenuItem onClick={handleSignOut}>Cerrar Sesión</MenuItem>
                   </MenuList>
                 </>
               )}

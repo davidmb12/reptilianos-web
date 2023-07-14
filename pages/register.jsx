@@ -1,24 +1,36 @@
-import { Alert, AlertIcon, FormControl } from '@chakra-ui/react'
-import React, { useState } from 'react'
-import RegisterForm from '../components/RegisterForm'
-import axios, {AxiosError}from 'axios'
+import { Alert, AlertIcon, FormControl } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import RegisterForm from '../components/RegisterForm';
+import axios, {AxiosError}from 'axios';
+import {signIn} from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { redirect } from 'next/dist/server/api-utils';
+
+
 const RegisterPage = () => {
 
-  const [error,setError] = useState()
+  const [error,setError] = useState();
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget)
     
     try{
-        const res = await axios.post(`/api/auth/signup`, 
+        const signUpResponse = await axios.post(`/api/auth/signup`, 
         { 
             email:formData.get('email'),
             password:formData.get('password'),
             username:formData.get('username')
+        });
+        console.log(signUpResponse);
+        const res = await signIn('credentials',{
+          email: signUpResponse.data.email,
+          password:formData.get('password'),
+          redirect:false
         })
-        console.log(res)
-
+        
+        if(res.ok) return router.push({pathname: '/', query: {u:"true"}})
 
     }catch(error){
       console.log(error)

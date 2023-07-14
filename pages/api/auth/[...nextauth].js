@@ -1,7 +1,8 @@
 import NextAuth,{NextAuthOptions} from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials'
-
-
+import {connectDB} from "../../../libs/mongodb"
+import User from '../../../models/user'
+import bcrypt from "bcryptjs"
 const authOptions = {
     session:{
         strategy:'jwt'
@@ -13,10 +14,20 @@ const authOptions = {
                 email: {label: "Email", type:"email", placeholder: ""},
                 password:{label: "Password", type:"password",placeholder:"*****"}
             },
-            authorize(credentials, req) {
-                console.log(credentials.email);
-                const user = {id: "1", username:"user", email:"user@example.com"}
-                return user;
+            async authorize(credentials, req) {
+                await connectDB();
+                console.log(credentials)
+
+                const userFound = await User.findOne({email:credentials?.email}).select("+password")
+
+                if(!userFound) throw new Error("Invalid credentials")
+                console.log(userFound)
+                const passwordMatch =await bcrypt.compare(credentials.password, userFound.password)
+                console.log("Match:")
+                console.log(passwordMatch)
+                if(!passwordMatch) throw new Error("Invalid credentials")
+
+                return userFound;
             }
         }),
     
@@ -36,12 +47,12 @@ const authOptions = {
 
         },
         session({session, token}){
-            console.log(session,token);
+            session.user = token.user;
             return session
         }
     },
     pages:{
-    
+        signIn:'/login'
     }
     
 }
